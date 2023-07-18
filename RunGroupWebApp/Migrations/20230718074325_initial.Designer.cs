@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RunGroupWebApp.Data;
 
@@ -11,9 +12,11 @@ using RunGroupWebApp.Data;
 namespace RunGroupWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230718074325_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -268,6 +271,7 @@ namespace RunGroupWebApp.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AppUserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("ClubCategory")
@@ -307,6 +311,7 @@ namespace RunGroupWebApp.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AppUserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Contact")
@@ -418,7 +423,9 @@ namespace RunGroupWebApp.Migrations
 
                     b.HasOne("RunGroupWebApp.Models.AppUser", "AppUser")
                         .WithMany("Clubs")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Address");
 
@@ -435,7 +442,9 @@ namespace RunGroupWebApp.Migrations
 
                     b.HasOne("RunGroupWebApp.Models.AppUser", "AppUser")
                         .WithMany("Races")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Address");
 

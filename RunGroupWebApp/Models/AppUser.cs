@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace RunGroupWebApp.Models
 {
-    public class AppUser
+    public class AppUser: IdentityUser
     {
-        [Key]
-        public int Id { get; set; }
         public int? Pace {  get; set; }
         public int? Mileage { get; set; }
         [ForeignKey("Address")]

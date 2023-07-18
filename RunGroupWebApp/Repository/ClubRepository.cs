@@ -24,15 +24,18 @@ namespace RunGroupWebApp.Repository
             _context.Remove(club);
             return Save();
         }
-
         public async Task<IEnumerable<Club>> GetClubByCity(string city)
         {
-            return await _context.Clubs.Include(a=>a.Address).Where(c=>c.Address.City==city).ToListAsync();
+            return await _context.Clubs.Include(a => a.Address).Where(c => c.Address.City == city).ToListAsync();
         }
 
         public async Task<Club> GetClubByIdAsync(int id)
         {
-            return await _context.Clubs.Include(a=> a.Address).FirstOrDefaultAsync(c=> c.Id==id);
+            return await _context.Clubs.Include(a => a.Address).FirstOrDefaultAsync(c => c.Id == id);
+        }
+        public async Task<Club> GetClubByIdAsyncNoTracking(int id)
+        {
+            return await _context.Clubs.Include(a => a.Address).AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<IEnumerable<Club>> GetClubs()
@@ -43,7 +46,7 @@ namespace RunGroupWebApp.Repository
         public bool Save()
         {
             var changes = _context.SaveChanges();
-            return changes >0 ? true : false;
+            return changes > 0 ? true : false;
         }
 
         public bool Update(Club club)

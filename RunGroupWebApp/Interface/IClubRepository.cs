@@ -6,6 +6,7 @@ namespace RunGroupWebApp.Interface
     {
         Task<IEnumerable<Club>> GetClubs();
         Task<Club> GetClubByIdAsync(int id);
+        Task<Club> GetClubByIdAsyncNoTracking(int id);
         Task<IEnumerable<Club>> GetClubByCity(string city);
         bool Add(Club club);
         bool Update(Club club);
