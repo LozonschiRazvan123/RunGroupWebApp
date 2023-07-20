@@ -30,7 +30,7 @@ namespace RunGroupWebApp.Controllers
                 };
                 result.Add(userViewModel);
             }
-            return View(result );
+            return View(result);
         }
 
         public async Task<IActionResult> Detail(string id)

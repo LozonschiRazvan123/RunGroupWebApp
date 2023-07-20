@@ -1,7 +1,8 @@
-﻿using RunGroupWebApp.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using RunGroupWebApp.Data;
 using RunGroupWebApp.Interface;
 using RunGroupWebApp.Models;
-using System.Data.Entity;
+using System.Runtime.InteropServices;
 
 namespace RunGroupWebApp.Repository
 {
