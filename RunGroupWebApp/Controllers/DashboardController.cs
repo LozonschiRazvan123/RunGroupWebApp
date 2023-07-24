@@ -64,13 +64,13 @@ namespace RunGroupWebApp.Controllers
             }
             
             var user = await _dashboardRepository.GetByIdNoTracking(User.GetUserId());
-            if(user.ProfileImageUrl == null || user.ProfileImageUrl == null)
+            if (user.ProfileImageUrl != null)
             {
                 var photoResult = await _photoService.AddPhotoAsync(editUserVM.Image);
-                user.ProfileImageUrl = photoResult.Url.ToString();
+                //user.Id = editUserVM.Id;
+                user.Pace = editUserVM.Pace;
                 user.Mileage = editUserVM.Mileage;
                 user.ProfileImageUrl = photoResult.Url.ToString();
-
                 user.City = editUserVM.City;
                 user.State = editUserVM.State;
                

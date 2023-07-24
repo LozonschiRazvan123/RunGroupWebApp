@@ -28,8 +28,8 @@ namespace RunGroupWebApp.Data
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Charlotte",
-                                State = "NC"
+                                City = "Iasi",
+                                State = "IS"
                             }
                          },
                         new Club()
@@ -41,8 +41,8 @@ namespace RunGroupWebApp.Data
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Charlotte",
-                                State = "NC"
+                                City = "Iasi",
+                                State = "IS"
                             }
                         },
                         new Club()
@@ -54,8 +54,8 @@ namespace RunGroupWebApp.Data
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Charlotte",
-                                State = "NC"
+                                City = "Iasi",
+                                State = "IS"
                             }
                         },
                         new Club()
@@ -88,8 +88,8 @@ namespace RunGroupWebApp.Data
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Charlotte",
-                                State = "NC"
+                                City = "Iasi",
+                                State = "IS"
                             }
                         },
                         new Race()
@@ -102,8 +102,8 @@ namespace RunGroupWebApp.Data
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Charlotte",
-                                State = "NC"
+                                City = "Iasi",
+                                State = "IS"
                             }
                         }
                     });
@@ -138,8 +138,8 @@ namespace RunGroupWebApp.Data
                         Address = new Address()
                         {
                             Street = "123 Main St",
-                            City = "Charlotte",
-                            State = "NC"
+                            City = "Iasi",
+                            State = "IS"
                         }
                     };
                     await userManager.CreateAsync(newAdminUser, "Coding@1234?");
@@ -159,8 +159,8 @@ namespace RunGroupWebApp.Data
                         Address = new Address()
                         {
                             Street = "123 Main St",
-                            City = "Charlotte",
-                            State = "NC"
+                            City = "Iasi",
+                            State = "IS"
                         }
                     };
                     await userManager.CreateAsync(newAppUser, "Coding@1234?");

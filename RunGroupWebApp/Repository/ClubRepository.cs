@@ -26,7 +26,7 @@ namespace RunGroupWebApp.Repository
         }
         public async Task<IEnumerable<Club>> GetClubByCity(string city)
         {
-            return await _context.Clubs.Include(a => a.Address).Where(c => c.Address.City == city).ToListAsync();
+            return await _context.Clubs.Include(a => a.Address).Where(c => c.Address.City.Contains(city)).ToListAsync();
         }
 
         public async Task<Club> GetClubByIdAsync(int id)
