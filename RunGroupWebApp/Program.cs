@@ -17,6 +17,7 @@ builder.Services.AddScoped<IRaceRepository, RaceRepository>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();
 builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ILocationService, LocationService>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings")); 
 builder.Services.AddTransient<Seed>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -34,8 +35,8 @@ var app = builder.Build();
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
 {
     Console.WriteLine("Am ajuns");
-    await Seed.SeedUsersAndRolesAsync(app);
-    //Seed.SeedData(app);
+    //await Seed.SeedUsersAndRolesAsync(app);
+    Seed.SeedData(app);
 }
 
 

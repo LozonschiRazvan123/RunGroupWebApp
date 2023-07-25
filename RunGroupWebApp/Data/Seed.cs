@@ -107,6 +107,53 @@ namespace RunGroupWebApp.Data
                             }
                         }
                     });
+                    //context.SaveChanges();
+                }
+
+                if (!context.Cities.Any())
+                {
+                    context.Cities.AddRange(new List<City>()
+                    {
+                        new City()
+                        {
+                            CityName = "Iasi",
+                            StateCode = "IS",
+                            Zip = 700028,
+                            Latitude = 11.111,
+                            Longitude = 11.111,
+                            Country = "Roumania"
+                        },
+
+                        new City()
+                        {
+                            CityName = "Iasi",
+                            StateCode = "IS",
+                            Zip = 700165,
+                            Latitude = 11.111,
+                            Longitude = 11.111,
+                            Country = "Roumania"
+                        },
+
+                        new City()
+                        {
+                            CityName = "Piatra Neamt",
+                            StateCode = "PN",
+                            Zip = 610004,
+                            Latitude = 12.1111,
+                            Longitude = 12.1111,
+                            Country = "Roumania"
+                        },
+
+                        new City()
+                        {
+                            CityName = "Piatra Neamt",
+                            StateCode = "PN",
+                            Zip = 610131,
+                            Latitude = 12.1111,
+                            Longitude = 12.1111,
+                            Country = "Roumania"
+                        }
+                    });
                     context.SaveChanges();
                 }
             }

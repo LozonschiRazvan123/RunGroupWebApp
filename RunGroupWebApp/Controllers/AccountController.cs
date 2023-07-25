@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RunGroupWebApp.Data;
+using RunGroupWebApp.Interface;
 using RunGroupWebApp.Models;
 using RunGroupWebApp.ViewModels;
 using System.Runtime.CompilerServices;
@@ -12,11 +13,13 @@ namespace RunGroupWebApp.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ApplicationDbContext _context;
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManage, ApplicationDbContext context)
+        private readonly ILocationService _locationService;
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManage, ApplicationDbContext context, ILocationService locationService)
         {
             _userManager = userManager;
             _signInManager = signInManage;
             _context = context;
+            _locationService = locationService;
         }
         public IActionResult Login()
         {
@@ -84,11 +87,33 @@ namespace RunGroupWebApp.Controllers
             return RedirectToAction("Index","Race");
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index","Race");
+        }
+
+        [HttpGet]
+        [Route("Account/Welcome")]
+        public async Task<IActionResult> Welcome(int page = 0)
+        {
+            if(page == 0)
+            {
+                return View();
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetLocation(string location)
+        {
+            if(location == null)
+            {
+                return Json("Not found");
+            }
+            var locationResult = await _locationService.GetLocationSearch(location);
+            return Json(locationResult);
         }
     }
 }
