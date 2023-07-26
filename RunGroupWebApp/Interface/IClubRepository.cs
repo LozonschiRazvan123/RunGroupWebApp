@@ -5,6 +5,7 @@ namespace RunGroupWebApp.Interface
     public interface IClubRepository
     {
         Task<IEnumerable<Club>> GetClubs();
+        Task<IEnumerable<Club>> GetClubsByUser(string userId);
         Task<Club> GetClubByIdAsync(int id);
         Task<Club> GetClubByIdAsyncNoTracking(int id);
         Task<IEnumerable<Club>> GetClubByCity(string city);

@@ -24,7 +24,7 @@ namespace RunGroupWebApp.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Race> races = await _raceRepository.GetRaces();
+            IEnumerable<Race> races = await _raceRepository.GetRacesByUser(User.GetUserId());
             return View(races);
         }
 

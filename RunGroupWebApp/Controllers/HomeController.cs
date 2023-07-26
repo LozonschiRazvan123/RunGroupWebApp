@@ -105,9 +105,14 @@ namespace RunGroupWebApp.Controllers
             {
                 await _signInManager.SignInAsync(newUser, isPersistent: false);
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+                
             }
-
-            return RedirectToAction("Index","Club");
+            else 
+            {
+                ModelState.AddModelError("Register.Password", "The password must containts alfa-number, special characters and numbers!");
+                return View(homeVM);
+            }
+            return RedirectToAction("Index", "Club");
         }
 
         public IActionResult Privacy()

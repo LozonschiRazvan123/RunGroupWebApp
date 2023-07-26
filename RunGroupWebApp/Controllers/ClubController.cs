@@ -21,7 +21,7 @@ namespace RunGroupWebApp.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Club> clubs = await _clubRepository.GetClubs();
+            IEnumerable<Club> clubs = await _clubRepository.GetClubsByUser(User.GetUserId());
             return View(clubs);
         }
 
