@@ -150,5 +150,17 @@ namespace RunGroupWebApp.Controllers
             _clubRepository.Delete(clubDetail);
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> SearchClubCity(string city)
+        {
+            var clubCity = await _clubRepository.GetClubByCity(city);
+            if(clubCity == null)
+            {
+                return View("Error");
+            }
+            return View(clubCity);
+            //return Ok(clubCity);
+        }
     }
 }

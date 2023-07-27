@@ -56,6 +56,12 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
                             </li>
                         }
+                        <form method="get" asp-action="SearchClubCity" asp-controller="Club">
+                            <div class="input-group">
+                                <input type="search" name="city" class="form-control form-control-sm rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                <button type="submit" class="btn btn-outline-primary">Search</button>
+                            </div>
+                        </form>
                     </ul>
                 </div>
             </div>
