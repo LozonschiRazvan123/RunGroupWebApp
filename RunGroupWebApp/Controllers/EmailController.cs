@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MimeKit;
+using MimeKit.Text;
 using RunGroupWebApp.Interface;
 using RunGroupWebApp.Services;
 using RunGroupWebApp.ViewModels;
+using MailKit.Net.Smtp;
+using MailKit.Security;
 
 namespace RunGroupWebApp.Controllers
 {
@@ -20,6 +24,11 @@ namespace RunGroupWebApp.Controllers
         {
             _emailService.SendEmailAsync(request);
             return Ok();
+        }
+        public IActionResult GenerateInviteMessage()
+        {
+            var response = new SendEmailRequest();
+            return View();
         }
 
         [HttpPost]
@@ -40,6 +49,16 @@ namespace RunGroupWebApp.Controllers
             };
 
             await _emailService.SendEmailAsync(emailRequest);
+            /*var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse("olga.jenkins@ethereal.email"));
+            email.To.Add(MailboxAddress.Parse("olga.jenkins@ethereal.email"));
+            email.Subject = "Invite to the application";
+            email.Body = new TextPart(TextFormat.Html) { Text = "Hi welcome to here" };
+            using var smtp = new SmtpClient();
+            smtp.Connect("smtp.ethereal.email.", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("olga.jenkins@ethereal.email", "3VtBUZcKQSVec3KHBM");
+            smtp.Send(email);
+            smtp.Disconnect(true);*/
             return Ok();
 
         }

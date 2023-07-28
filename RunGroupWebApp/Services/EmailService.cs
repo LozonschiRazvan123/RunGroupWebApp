@@ -1,7 +1,11 @@
-﻿using RunGroupWebApp.Interface;
+﻿using MailKit.Security;
+using MimeKit.Text;
+using MimeKit;
+using RunGroupWebApp.Interface;
 using RunGroupWebApp.ViewModels;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using MailKit.Net.Smtp;
 
 namespace RunGroupWebApp.Services
 {
@@ -14,15 +18,25 @@ namespace RunGroupWebApp.Services
         }
         public async Task SendEmailAsync(SendEmailRequest request)
         {
-            var apiKey = _configuration.GetSection("EmailAPIKey").Value;
+            /*var apiKey = _configuration.GetSection("EmailAPIKey").Value;
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress(_configuration.GetSection("EmailUsername").Value);
+            var from = new EmailAddress("rungroup@test.com","RunGroup");
             var subject = request.Subject;
             var to = new EmailAddress(request.EmailTo);
             var plainTextContent = request.Body;
             var htmlContent = $"<strong>{request.Body}</strong>";
             var msg = MailHelper.CreateSingleEmail(from,to,subject,plainTextContent,htmlContent);
-            var response = await client.SendEmailAsync(msg);
+            var response = await client.SendEmailAsync(msg);*/
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse("olga.jenkins@ethereal.email"));
+            email.To.Add(MailboxAddress.Parse("olga.jenkins@ethereal.email"));
+            email.Subject = "Invite to the application";
+            email.Body = new TextPart(TextFormat.Html) { Text = "Hi welcome to here" };
+            using var smtp = new SmtpClient();
+            smtp.Connect("smtp.ethereal.email.", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("olga.jenkins@ethereal.email", "3VtBUZcKQSVec3KHBM");
+            smtp.Send(email);
+            smtp.Disconnect(true);
         }
     }
 }
