@@ -20,9 +20,9 @@ namespace RunGroupWebApp.Controllers
 
         [HttpPost]
         [Route("email")]
-        public IActionResult SendEmail(SendEmailRequest request)
+        public async Task<IActionResult> SendEmail(SendEmailRequest request)
         {
-            _emailService.SendEmailAsync(request);
+            await _emailService.SendEmailAsync(request);
             return Ok();
         }
         public IActionResult GenerateInviteMessage()
@@ -37,9 +37,8 @@ namespace RunGroupWebApp.Controllers
         {
             var senderName = name;
             var message = "Hi there! I would like to invite you to join HabitTracker, an amazing application that helps you develop and track your habits. With HabitTracker, you can set goals, track your progress, and stay motivated along the way. To get started, simply click on the following link ";
-            var link = $"{request.Body}/sign-up";
             var Body = $"<h1>Invite to HabitTracker from {senderName}</h1>" +
-                                           $"Message: {message} <a href='{link}'>here</a> .";
+                                           $"Message: {message} ";
 
             var emailRequest = new SendEmailRequest
             {

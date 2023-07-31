@@ -28,13 +28,13 @@ namespace RunGroupWebApp.Services
             var msg = MailHelper.CreateSingleEmail(from,to,subject,plainTextContent,htmlContent);
             var response = await client.SendEmailAsync(msg);*/
             var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse("olga.jenkins@ethereal.email"));
-            email.To.Add(MailboxAddress.Parse("olga.jenkins@ethereal.email"));
-            email.Subject = "Invite to the application";
-            email.Body = new TextPart(TextFormat.Html) { Text = "Hi welcome to here" };
+            email.From.Add(MailboxAddress.Parse("kyla.stanton26@ethereal.email"));
+            email.To.Add(MailboxAddress.Parse(request.EmailTo));
+            email.Subject = request.Subject;
+            email.Body = new TextPart(TextFormat.Html) { Text = request.Body };
             using var smtp = new SmtpClient();
             smtp.Connect("smtp.ethereal.email.", 587, SecureSocketOptions.StartTls);
-            smtp.Authenticate("olga.jenkins@ethereal.email", "3VtBUZcKQSVec3KHBM");
+            smtp.Authenticate("kyla.stanton26@ethereal.email", "64SsV7RAGeCyJrFHrK");
             smtp.Send(email);
             smtp.Disconnect(true);
         }
