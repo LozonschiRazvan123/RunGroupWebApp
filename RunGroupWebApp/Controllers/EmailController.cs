@@ -20,7 +20,7 @@ namespace RunGroupWebApp.Controllers
 
         [HttpPost]
         [Route("email")]
-        public async Task<IActionResult> SendEmail(SendEmailRequest request)
+        public async Task<IActionResult> SendEmail([FromForm]SendEmailRequest request)
         {
             await _emailService.SendEmailAsync(request);
             return Ok();
