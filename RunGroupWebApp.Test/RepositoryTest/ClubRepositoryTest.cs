@@ -24,7 +24,7 @@ namespace RunGroupWebApp.Test.RepositoryTest
             databaseContext.Database.EnsureCreated();
             var f = databaseContext.Clubs.ToList();
 
-            if (databaseContext.Clubs.Count() <= 0)
+            if (databaseContext.Clubs.Count() < 0)
             {
                 for (int i = 0; i < 10; i++)
                 {
@@ -76,6 +76,23 @@ namespace RunGroupWebApp.Test.RepositoryTest
             //Assert
             result.Should().BeTrue();
 
+        }
+
+        [Fact]
+        public async void ClubRepository_GetByIdAsync_ReturnsClub()
+        {
+            //Arrange
+            var id = 1;
+            var dbContext = await GetDbContext();
+            var clubRepository = new ClubRepository(dbContext);
+
+            //Act
+            var result = clubRepository.GetClubByIdAsync(id);
+
+
+            //Assert
+            result.Should().NotBeNull();
+            result.Should().BeOfType<Task<Club>>();
         }
     }
 }
